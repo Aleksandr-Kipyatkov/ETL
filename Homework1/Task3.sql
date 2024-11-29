@@ -1,5 +1,7 @@
 /*
 Задание 3
+
+Определите в какой нормальной форме данная таблица, приведите её ко 2 и 3 нормальным формам последовательно.
 +-----------+--------+-----+---------+-----------+----------+
 |Employee_ID|Job_Code| Name|City_Code|        Job| Home_City|
 +-----------+--------+-----+---------+-----------+----------+
@@ -9,7 +11,6 @@
 |       E002|     J03|  Bob|       56|  Bartender|      Perm|
 |       E003|     J01|Alice|       56|       Chef|      Perm|
 +-----------+--------+-----+---------+-----------+----------+
-Определите в какой нормальной форме данная таблица, приведите её ко 2 и 3 нормальным формам последовательно.
 */
 
 
@@ -18,7 +19,7 @@ CREATE SCHEMA homework1;
 USE homework1;
 
 -- Исходная таблица
-CREATE TABLE Task1 (
+CREATE TABLE Task3 (
     Employee_ID VARCHAR(10),
     Name VARCHAR(50),
     Job_Code VARCHAR(10),
@@ -54,7 +55,7 @@ CREATE TABLE Employees (
 
 INSERT INTO Employees (Employee_ID, Name, City_Code)
 SELECT DISTINCT Employee_ID, Name, City_Code
-FROM Task1;
+FROM Task3;
 
 
 CREATE TABLE Jobs (
@@ -64,7 +65,7 @@ CREATE TABLE Jobs (
 
 INSERT INTO Jobs (Job_Code, Job)
 SELECT DISTINCT Job_Code, Job
-FROM Task1;
+FROM Task3;
 
 CREATE TABLE Cities (
     City_Code INT PRIMARY KEY,
@@ -73,7 +74,7 @@ CREATE TABLE Cities (
 
 INSERT INTO Cities (City_Code, Home_City)
 SELECT DISTINCT City_Code, Home_City
-FROM Task1;
+FROM Task3;
 
 -- Создаем составной ключ
 CREATE TABLE Employee_Jobs (
@@ -86,7 +87,7 @@ CREATE TABLE Employee_Jobs (
 
 INSERT INTO Employee_Jobs (Employee_ID, Job_Code)
 SELECT DISTINCT Employee_ID, Job_Code
-FROM Task1;
+FROM Task3;
 
 /*
 Таблицы приведены к 3 нормальной форме. Это позволяет избежать избыточности и поддерживать целостность данных.
